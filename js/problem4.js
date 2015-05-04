@@ -26,4 +26,28 @@
 
 */
 
-// Write your JavaScript here
+function changeElementText(element, answer) {
+  $(element).text(answer);
+}
+
+function isAValidDenomination(note) {
+  var currencyDenomination = [5,10,20,30,50,100,500,1000];
+
+  return currencyDenomination.indexOf(note) == -1;
+}
+
+function countMoney() {
+  var currencyNotes = Array.slice(arguments);
+  changeElementText("#notes", currencyNotes.join(", "));
+  var total = 0;
+
+  for(var i = 0; i < currencyNotes.length; i++) {
+    var note = currencyNotes[i];
+
+    if (isAValidDenomination(note)) break;
+
+    total += note;
+  };
+
+  changeElementText("#total", total);
+}
